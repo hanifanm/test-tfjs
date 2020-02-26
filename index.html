@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Test TF JS</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.0/dist/tf.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 40px;
+      overflow: hidden;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Do what ever you want!</h1>
+  <p>Open console for surprise</p>
+  <script>
+    function createVec(n) {
+      return [...Array(n)].map(val => Math.random() * 100)
+    }
+
+    function createArr(n, m) {
+      return [...Array(n)].map(row => createVec(m))
+    }
+
+    function test(imageSize) {
+      let N = imageSize * imageSize
+      let A = tf.tensor(createArr(N, N), [N, N])
+      let B = tf.tensor(createVec(N), [N, 1])
+      let C = tf.matMul(A, B)
+      console.log(`Image Size : ${imageSize} x ${imageSize}`)
+      console.log(`Matrix Size : ${N} x ${N}`)
+      A.print()
+      B.print()
+      C.print()
+    }
+  </script>
+</body>
+
+</html>
